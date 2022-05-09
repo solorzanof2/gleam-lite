@@ -1,0 +1,53 @@
+{
+  "app": "gleam-lite",
+  "frameworkVersion": "1.4.0",
+  "provider": {
+    "role": "admin",
+    "stage": "dev",
+    "host": "http://localhost",
+    "basePath": "/gleam-lite/api",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "apiKey": "2c82e77c05b3204e3afb0c3cbcb330e3",
+    "origin": "http://localhost"
+  },
+  "environment": {
+    "CURRENT_STAGE": "dev"
+  },
+  "functions": {
+    "systemHealthHandler": {
+      "handler": "src\\handlers\\SystemHealth",
+      "path": "/system/healths",
+      "methods": ["get"],
+      "private": true
+    },
+    "fooPathHandler": {
+      "handler": "src\\handlers\\FooPath",
+      "path": "/foo/route",
+      "methods": ["post"]
+    },
+    "timeSpecHandler": {
+      "handler": "src\\handlers\\TimeSpec",
+      "path": "/time/spec",
+      "methods": ["get"]
+    },
+    "pageAttemptHandler": {
+      "handler": "src\\handlers\\PageAttempt",
+      "path": "/welcome",
+      "methods": ["get"]
+    }
+  },
+  "resources": {
+    "gleamDatabase": {
+      "type": "database",
+      "handler": "modules\\emerus\\EmerusEngine",
+      "properties": {
+        "hostname": "localhost",
+        "username": "sls",
+        "password": "123456",
+        "database": "nodemerus__dev",
+        "dbdriver": "mysql"
+      }
+    }
+  },
+  "plugins": {}
+}
