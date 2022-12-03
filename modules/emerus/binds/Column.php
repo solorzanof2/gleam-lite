@@ -6,442 +6,438 @@ use emerus\utils\StringUtils;
 
 class Column
 {
-    
-    const CLAZZ = 'class';
 
-    const COLLECTION = 'collection';
-  
-    const T_STRING = 'string';
-  
-    const T_INT = 'int';
-  
-    const T_DOUBLE = 'double';
-  
-    const DATETIME = 'datetime';
+  const CLAZZ = 'class';
 
-    const EAGER = "EAGER";
+  const COLLECTION = 'collection';
 
-	const LAZY = "LAZY";
+  const T_STRING = 'string';
 
-	/**
-	 * ### Property Name
-	 * 
-	 * @var string
-	 */
-	private $name = "";
+  const T_INT = 'int';
 
-	/**
-	 * ### Column Name
-	 * 
-	 * @var string
-	 */
-	private $column = "";
+  const T_DOUBLE = 'double';
 
-	/**
-	 * ### Value Property
-	 * Determine de value for the column
-	 * defined by property {$type}
-	 * 
-	 * @var mixed
-	 */
-	private $value = null;
+  const DATETIME = 'datetime';
 
-	/**
-	 * ### Is Primary Key Property
-	 * Determine if the current column
-	 * is the primary key for the
-	 * table
-	 *
-	 * @var boolean
-	 */
-	private $primaryKey = false;
+  const EAGER = "EAGER";
 
-	/**
-	 * ### Object Property
-	 * Determine if the current
-	 * column is for store a
-	 * relation object or 
-	 * collection
-	 *
-	 * @var boolean
-	 */
-	private $object = false;
-	
-	/**
-	 * ### Entity Property
-	 * Determine the entity
-	 * name for the current
-	 * column type
-	 *
-	 * @var string
-	 */
-	private $target = '';
+  const LAZY = "LAZY";
 
-	/**
-	 * ### Type Property
-	 * Determine the type
-	 * of the current column
-	 *
-	 * @var string
-	 */
-	private $type = 'string';
+  /**
+   * ### Property Name
+   * 
+   * @var string
+   */
+  private $name = "";
 
-	/**
-	 * ### Default Values Property
-	 * Determine the default values
-	 * for this column. This will be
-	 * usefull with @Enumerated fields
-	 * 
-	 * @var array
-	 */
-	private $defaultValues = [];
+  /**
+   * ### Column Name
+   * 
+   * @var string
+   */
+  private $column = "";
 
-	/**
-	 * ### Join Column Property
-	 * Defines the table field
-	 * as relation target
-	 *
-	 * @var string
-	 */
-	private $joinColumn = '';
+  /**
+   * ### Value Property
+   * Determine de value for the column
+   * defined by property {$type}
+   * 
+   * @var mixed
+   */
+  private $value = null;
 
-	/**
-	 * ### Fetch Property
-	 * Defines the fetch type
-	 * for the current column
-	 * EAGER is defatul.
-	 *
-	 * @var string
-	 */
-	private $fetch = self::EAGER;
+  /**
+   * ### Is Primary Key Property
+   * Determine if the current column
+   * is the primary key for the
+   * table
+   *
+   * @var boolean
+   */
+  private $primaryKey = false;
 
-	/**
-	 * ### Mapped By Property
-	 * Defines if the current
-	 * relation is mapped by
-	 * foreing entity property
-	 *
-	 * @var string
-	 */
-	private $mappedBy = '';
+  /**
+   * ### Object Property
+   * Determine if the current
+   * column is for store a
+   * relation object or 
+   * collection
+   *
+   * @var boolean
+   */
+  private $object = false;
 
-	/**
-	 * ### Owner Property
-	 * Determine if the current
-	 * column is owner of the
-	 * mapped relation
-	 *
-	 * @var boolean
-	 */
-	private $owner = false;
+  /**
+   * ### Entity Property
+   * Determine the entity
+   * name for the current
+   * column type
+   *
+   * @var string
+   */
+  private $target = '';
 
-	/**
-	 * ### Inverse Join Property
-	 * Contains the name of the field
-	 * inverseJoin for foreing table
-	 * 
-	 * @var string
-	 */
-	private $inverseJoin = '';
+  /**
+   * ### Type Property
+   * Determine the type
+   * of the current column
+   *
+   * @var string
+   */
+  private $type = 'string';
 
-	/**
-	 * ### Join Table Property
-	 * Determine the name of the table
-	 * that join between many to many
-	 * relationship
-	 *
-	 * @var string
-	 */
-	private $joinTable = '';
+  /**
+   * ### Default Values Property
+   * Determine the default values
+   * for this column. This will be
+   * usefull with @Enumerated fields
+   * 
+   * @var array
+   */
+  private $defaultValues = [];
 
-	/**
-	 * ### Is Many To Many Property
-	 * Determine if the current column is a
-	 * many to many relationship
-	 *
-	 * @var boolean
-	 */
-	private $isManyToMany = false;
+  /**
+   * ### Join Column Property
+   * Defines the table field
+   * as relation target
+   *
+   * @var string
+   */
+  private $joinColumn = '';
 
-	/**
-	 * ### Entity Property
-	 * Defines the name of the
-	 * entity for wich this
-	 * column belong
-	 *
-	 * @var string
-	 */
-	private $entity = '';
+  /**
+   * ### Fetch Property
+   * Defines the fetch type
+   * for the current column
+   * EAGER is defatul.
+   *
+   * @var string
+   */
+  private $fetch = self::EAGER;
 
-	/**
-	 * ### Updatable Property
-	 * Defines if this column/property
-	 * can be updated
-	 * 
-	 * @var bool
-	 */
-	private $updatable = true;
+  /**
+   * ### Mapped By Property
+   * Defines if the current
+   * relation is mapped by
+   * foreing entity property
+   *
+   * @var string
+   */
+  private $mappedBy = '';
 
-	/**
-	 * ### Nullable Property
-	 * Defines if this column/property
-	 * can be null
-	 *
-	 * @var boolean
-	 */
-	private $nullable = true;
+  /**
+   * ### Owner Property
+   * Determine if the current
+   * column is owner of the
+   * mapped relation
+   *
+   * @var boolean
+   */
+  private $owner = false;
 
-	/**
-	 * ### Length Property
-	 * Defines the longitude varchar
-	 * base on
-	 *
-	 * @var integer
-	 */
-	private $length = 0;
+  /**
+   * ### Inverse Join Property
+   * Contains the name of the field
+   * inverseJoin for foreing table
+   * 
+   * @var string
+   */
+  private $inverseJoin = '';
 
-	/**
-	 * ### Orphan Removal Property
-	 * Defines that the orphan childs
-	 * must to be removed wen his parent
-	 * has been deleted
-	 *
-	 * @var boolean
-	 */
-	private $orphanRemoval = true;
+  /**
+   * ### Join Table Property
+   * Determine the name of the table
+   * that join between many to many
+   * relationship
+   *
+   * @var string
+   */
+  private $joinTable = '';
 
-	/**
-	 * ### Is UUID Property
-	 * Defines if the current property
-	 * is container of auto-generated
-	 * uuid
-	 *
-	 * @var boolean
-	 */
-	private $isUuid = false;
+  /**
+   * ### Is Many To Many Property
+   * Determine if the current column is a
+   * many to many relationship
+   *
+   * @var boolean
+   */
+  private $isManyToMany = false;
 
-	public function __construct( string $entity = null )
-	{
-		if ( ! StringUtils::isNull( $entity ) )
-		{
-			$this->entity = $entity;
-		}
+  /**
+   * ### Entity Property
+   * Defines the name of the
+   * entity for wich this
+   * column belong
+   *
+   * @var string
+   */
+  private $entity = '';
+
+  /**
+   * ### Updatable Property
+   * Defines if this column/property
+   * can be updated
+   * 
+   * @var bool
+   */
+  private $updatable = true;
+
+  /**
+   * ### Nullable Property
+   * Defines if this column/property
+   * can be null
+   *
+   * @var boolean
+   */
+  private $nullable = true;
+
+  /**
+   * ### Length Property
+   * Defines the longitude varchar
+   * base on
+   *
+   * @var integer
+   */
+  private $length = 0;
+
+  /**
+   * ### Orphan Removal Property
+   * Defines that the orphan childs
+   * must to be removed wen his parent
+   * has been deleted
+   *
+   * @var boolean
+   */
+  private $orphanRemoval = true;
+
+  /**
+   * ### Is UUID Property
+   * Defines if the current property
+   * is container of auto-generated
+   * uuid
+   *
+   * @var boolean
+   */
+  private $isUuid = false;
+
+  public function __construct(string $entity = null)
+  {
+    if (!StringUtils::isNull($entity)) {
+      $this->entity = $entity;
     }
-    
-	public static function toArray(): array
-	{
-		return [
-			self::EAGER,
-			self::LAZY
-		];
-	}
+  }
 
-	public function setName( string $name ): void
-	{
-		$this->name = $name;
-	}
+  public static function toArray(): array
+  {
+    return [
+      self::EAGER,
+      self::LAZY
+    ];
+  }
 
-	public function getName(): string
-	{
-		return $this->name;
-	}
+  public function setName(string $name): void
+  {
+    $this->name = $name;
+  }
 
-	public function setColumn( string $column ): void
-	{
-		$this->column = $column;
-	}
+  public function getName(): string
+  {
+    return $this->name;
+  }
 
-	public function getColumn(): string
-	{
-		return $this->column;
-	}
+  public function setColumn(string $column): void
+  {
+    $this->column = $column;
+  }
 
-	public function setValue( $value ): void
-	{
-		$this->value = $value;
-	}
+  public function getColumn(): string
+  {
+    return $this->column;
+  }
 
-	public function getValue()
-	{
-		return $this->value;
-	}
+  public function setValue($value): void
+  {
+    $this->value = $value;
+  }
 
-	public function setPrimaryKey( bool $primaryKey ): void
-	{
-		$this->primaryKey = $primaryKey;
-	}
+  public function getValue()
+  {
+    return $this->value;
+  }
 
-	public function getPrimaryKey(): bool
-	{
-		return $this->primaryKey;
-	}
+  public function setPrimaryKey(bool $primaryKey): void
+  {
+    $this->primaryKey = $primaryKey;
+  }
 
-	public function setObject( bool $object ): void
-	{
-		$this->object = $object;
-	}
+  public function getPrimaryKey(): bool
+  {
+    return $this->primaryKey;
+  }
 
-	public function getObject(): bool
-	{
-		return $this->object;
-	}
+  public function setObject(bool $object): void
+  {
+    $this->object = $object;
+  }
 
-	public function setType( string $type ): void
-	{
-		$this->type = $type;
-	}
+  public function getObject(): bool
+  {
+    return $this->object;
+  }
 
-	public function getType(): string
-	{
-		return $this->type;
-	}
+  public function setType(string $type): void
+  {
+    $this->type = $type;
+  }
 
-	public function setDefaultValues( array $values ): void
-	{
-		$this->defaultValues = $values;
-	}
+  public function getType(): string
+  {
+    return $this->type;
+  }
 
-	public function getDefaultValues(): array
-	{
-		return $this->defaultValues;
-	}
+  public function setDefaultValues(array $values): void
+  {
+    $this->defaultValues = $values;
+  }
 
-	public function setTarget( string $target ): void
-	{
-		$this->target = $target;
-	}
+  public function getDefaultValues(): array
+  {
+    return $this->defaultValues;
+  }
 
-	public function getTarget(): string
-	{
-		return $this->target;
-	}
+  public function setTarget(string $target): void
+  {
+    $this->target = $target;
+  }
 
-	public function setJoinColumn( string $joinColumn ): void
-	{
-		$this->joinColumn = $joinColumn;
-	}
+  public function getTarget(): string
+  {
+    return $this->target;
+  }
 
-	public function getJoinColumn(): string
-	{
-		return $this->joinColumn;
-	}
+  public function setJoinColumn(string $joinColumn): void
+  {
+    $this->joinColumn = $joinColumn;
+  }
 
-	public function setMappedBy( string $mappedBy ): void
-	{
-		$this->mappedBy = $mappedBy;
-	}
+  public function getJoinColumn(): string
+  {
+    return $this->joinColumn;
+  }
 
-	public function getMappedBy(): string
-	{
-		return $this->mappedBy;
-	}
+  public function setMappedBy(string $mappedBy): void
+  {
+    $this->mappedBy = $mappedBy;
+  }
 
-	public function setFetch( string $fetch ): void
-	{
-		$this->fetch = $fetch;
-	}
+  public function getMappedBy(): string
+  {
+    return $this->mappedBy;
+  }
 
-	public function getFetch(): string
-	{
-		return $this->fetch;
-	}
+  public function setFetch(string $fetch): void
+  {
+    $this->fetch = $fetch;
+  }
 
-	public function setOwner(): void
-	{
-		$this->owner = TRUE;
-	}
+  public function getFetch(): string
+  {
+    return $this->fetch;
+  }
 
-	public function getOwner(): bool
-	{
-		return $this->owner;
-	}
+  public function setOwner(): void
+  {
+    $this->owner = TRUE;
+  }
 
-	public function getInverseJoin(): string
-	{
-		return $this->inverseJoin;
-	}
+  public function getOwner(): bool
+  {
+    return $this->owner;
+  }
 
-	public function setInverseJoin( string $inverseJoin ): void
-	{
-		$this->inverseJoin = $inverseJoin;
-	}
+  public function getInverseJoin(): string
+  {
+    return $this->inverseJoin;
+  }
 
-	public function setJoinTable( string $joinTable ): void
-	{
-		$this->joinTable = $joinTable;
-		$this->isManyToMany = TRUE;
-	}
+  public function setInverseJoin(string $inverseJoin): void
+  {
+    $this->inverseJoin = $inverseJoin;
+  }
 
-	public function getJoinTable(): string
-	{
-		return $this->joinTable;
-	}
+  public function setJoinTable(string $joinTable): void
+  {
+    $this->joinTable = $joinTable;
+    $this->isManyToMany = TRUE;
+  }
 
-	public function getIsManyToMany(): bool
-	{
-		return $this->isManyToMany;
-	}
+  public function getJoinTable(): string
+  {
+    return $this->joinTable;
+  }
 
-	public function getEntity(): string
-	{
-		return $this->entity;
-	}
+  public function getIsManyToMany(): bool
+  {
+    return $this->isManyToMany;
+  }
 
-	public function setEntity( string $entity ): void
-	{
-		$this->entity = $entity;
-	}
+  public function getEntity(): string
+  {
+    return $this->entity;
+  }
 
-	public function updatable(): bool
-	{
-		return $this->updatable;
-	}
+  public function setEntity(string $entity): void
+  {
+    $this->entity = $entity;
+  }
 
-	public function setUpdatable( bool $updatable ): void
-	{
-		$this->updatable = $updatable;
-	}
+  public function updatable(): bool
+  {
+    return $this->updatable;
+  }
 
-	public function nullable(): bool
-	{
-		return $this->nullable;
-	}
+  public function setUpdatable(bool $updatable): void
+  {
+    $this->updatable = $updatable;
+  }
 
-	public function setNullable( bool $nullable ): void
-	{
-		$this->nullable = $nullable;
-	}
+  public function nullable(): bool
+  {
+    return $this->nullable;
+  }
 
-	public function length(): int
-	{
-		return $this->length;
-	}
+  public function setNullable(bool $nullable): void
+  {
+    $this->nullable = $nullable;
+  }
 
-	public function setLength( int $length ): void
-	{
-		$this->length = $length;
-	}
+  public function length(): int
+  {
+    return $this->length;
+  }
 
-	public function getOrphanRemoval(): bool
-	{
-		return $this->orphanRemoval;
-	}
+  public function setLength(int $length): void
+  {
+    $this->length = $length;
+  }
 
-	public function setOrphanRemoval(): void
-	{
-		$this->orphanRemoval = TRUE;
-	}
+  public function getOrphanRemoval(): bool
+  {
+    return $this->orphanRemoval;
+  }
 
-	public function getIsUUID(): bool
-	{
-		return $this->isUuid;
-	}
+  public function setOrphanRemoval(): void
+  {
+    $this->orphanRemoval = TRUE;
+  }
 
-	public function setUUID(): void
-	{
-		$this->isUuid = TRUE;
-	}
+  public function getIsUUID(): bool
+  {
+    return $this->isUuid;
+  }
 
+  public function setUUID(): void
+  {
+    $this->isUuid = TRUE;
+  }
 }
-
-?>

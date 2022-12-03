@@ -13,25 +13,23 @@ class InvalidArgumentExceptionFactory extends InvalidArgumentException
 	 * @param  string $entityName name of the evaluated entity object
 	 * @return InvalidArgumentException
 	 */
-	public static function invalidEntityAnnotation( string $entityName ): InvalidArgumentException
+	public static function invalidEntityAnnotation(string $entityName): InvalidArgumentException
 	{
-		return new self( "The entity {$entityName} has no valid annotation types", self::INVALID_ARGUMENT_CODE );
+		return new self("The entity {$entityName} has no valid annotation types", self::INVALID_ARGUMENT_CODE);
 	}
 
-	public static function annotationNotFound( string $annotation ): InvalidArgumentException
+	public static function annotationNotFound(string $annotation): InvalidArgumentException
 	{
-		return new self( "The entity has no mapped {$annotation} annotation", self::INVALID_ARGUMENT_CODE );
+		return new self("The entity has no mapped {$annotation} annotation", self::INVALID_ARGUMENT_CODE);
 	}
 
-	public static function invalidArgument( string $argument ): InvalidArgumentException
+	public static function invalidArgument(string $argument): InvalidArgumentException
 	{
-		return new self( "The Argument {$argument} is not valid", self::INVALID_ARGUMENT_CODE );
+		return new self("The Argument {$argument} is not valid", self::INVALID_ARGUMENT_CODE);
 	}
 
 	public static function getNameNotFoundException(): InvalidArgumentException
 	{
-		return new self( "No entity name was provided", self::INVALID_ARGUMENT_CODE );
+		return new self("No entity name was provided", self::INVALID_ARGUMENT_CODE);
 	}
 }
-
-?>

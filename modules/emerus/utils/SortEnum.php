@@ -4,9 +4,7 @@ namespace emerus\utils;
 
 class SortEnum
 {
-    const ASC = 'ASC';
+  const ASC = 'ASC';
 
-    const DESC = 'DESC';
+  const DESC = 'DESC';
 }
-
-?>
